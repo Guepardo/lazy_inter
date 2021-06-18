@@ -1,4 +1,5 @@
 from .session import Session
+from repository.session_repository import SessionRepository
 
 
 class SessionManager:
@@ -7,6 +8,7 @@ class SessionManager:
     def __init__(self):
         self.some_attribute = None
         self.session = None
+        self.repository = SessionRepository()
 
     @classmethod
     def instance(self):
@@ -22,9 +24,7 @@ class SessionManager:
 
     def finish_session(self):
         self.session.finish()
-
-        with open('data.csv', 'a+') as file:
-            file.write(','.join(self.session.serialize()) + "\n")
+        self.repository.save(self.session)
 
     def current_session(self):
         return self.session

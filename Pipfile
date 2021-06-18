@@ -7,10 +7,9 @@ verify_ssl = true
 autopep8 = "*"
 
 [packages]
-three = "*"
 pynput = "*"
 arrow = "*"
-keyboard = "*"
+pyinstaller = "*"
 
 [requires]
 python_version = "3.6.9"
