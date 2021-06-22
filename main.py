@@ -3,6 +3,28 @@ from pynput import keyboard
 
 from observer import SessionManager
 
+welcome = """
+   ,--,
+,---.'|
+|   | :                                      ,---,              ___
+:   : |                                   ,`--.' |            ,--.'|_
+|   ' :                    ,----,         |   :  :     ,---,  |  | :,'           __  ,-.
+;   ; '                  .'   .`|         :   |  ' ,-+-. /  | :  : ' :         ,' ,'/ /|
+'   | |__  ,--.--.    .'   .'  .'     .--,|   :  |,--.'|'   .;__,'  /    ,---. '  | |' |
+|   | :.'|/       \ ,---, '   ./    /_ ./|'   '  |   |  ,"' |  |   |    /     \|  |   ,'
+'   :    .--.  .-. |;   | .'  /  , ' , ' :|   |  |   | /  | :__,'| :   /    /  '  :  /
+|   |  ./ \__\/: . .`---' /  ;--/___/ \: |'   :  |   | |  | | '  : |__.    ' / |  | '
+;   : ;   ," .--.; |  /  /  / .`|.  \  ' ||   |  |   | |  |/  |  | '.''   ;   /;  : |
+|   ,/   /  /  ,.  |./__;     .'  \  ;   :'   :  |   | |--'   ;  :    '   |  / |  , ;
+'---'   ;  :   .'   ;   |  .'      \  \  ;;   |.'|   |/       |  ,   /|   :    |---'
+        |  ,     .-.`---'           :  \  '---'  '---'         ---`-'  \   \  /
+         `--`---'                    \  ' ;                             `----'
+                                      `--`
+Logging outages is simple
+"""
+
+print(welcome, flush=True)
+
 
 def notify(message, icon_name="printer-remote"):
     os.system(f"notify-send -i {icon_name} -t 10000 '{message}'")
@@ -26,7 +48,8 @@ def on_finish():
         manager.finish_session()
         session = manager.current_session()
 
-        notify(f"A sessão durou {str(session.resume())} minutos e será registrada como: {session.reason()}")
+        notify(
+            f"A sessão durou {str(session.resume())} minutos e será registrada como: {session.reason()}")
     else:
         notify('Nenhuma sessão iniciada.')
 

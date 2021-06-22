@@ -1,1 +1,1 @@
-pyinstaller --onefile main.py
+pyinstaller --onefile main.py --name lazyinter --hidden-import "pynput.keyboard._xorg" --hidden-import "pynput.mouse._xorg"
